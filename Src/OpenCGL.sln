@@ -1,0 +1,36 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30114.105
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OpenCGL", "OpenCGL\OpenCGL.csproj", "{02C21B98-CBB4-4516-B747-96FD1DBABF93}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Example", "Example\Example.csproj", "{432961A1-5677-4BE8-AD74-348DBE76E91C}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Examples", "Examples", "{698C2FAE-07F7-4F4C-86D8-25C0D36951FC}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{02C21B98-CBB4-4516-B747-96FD1DBABF93}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{02C21B98-CBB4-4516-B747-96FD1DBABF93}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{02C21B98-CBB4-4516-B747-96FD1DBABF93}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{02C21B98-CBB4-4516-B747-96FD1DBABF93}.Release|Any CPU.Build.0 = Release|Any CPU
+		{432961A1-5677-4BE8-AD74-348DBE76E91C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{432961A1-5677-4BE8-AD74-348DBE76E91C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{432961A1-5677-4BE8-AD74-348DBE76E91C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{432961A1-5677-4BE8-AD74-348DBE76E91C}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{432961A1-5677-4BE8-AD74-348DBE76E91C} = {698C2FAE-07F7-4F4C-86D8-25C0D36951FC}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {219F1A8D-0628-4069-B468-19E05A0C7823}
+	EndGlobalSection
+EndGlobal
