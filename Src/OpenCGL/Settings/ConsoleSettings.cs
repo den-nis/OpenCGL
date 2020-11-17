@@ -48,7 +48,7 @@ namespace OpenCGL.Settings
             CONSOLE_FONT_INFOEX info = new CONSOLE_FONT_INFOEX();
             info.cbSize = (uint)Marshal.SizeOf(info);
             if (!GetCurrentConsoleFontEx(ConsoleHandle, false, ref info))
-                throw new Exception("Failed get get current console font");
+                throw new Exception("Failed to get current console font info");
 
             return info;
         }
