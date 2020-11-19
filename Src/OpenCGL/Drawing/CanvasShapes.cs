@@ -5,8 +5,7 @@ namespace OpenCGL.Drawing
 {
     public partial class Canvas
     {
-        public void DrawPoint(Vec2i point, int size, ConsoleChar fill) => DrawPoint(point.X, point.Y, size, fill);
-        public void DrawPoint(int x, int y, int size, ConsoleChar fill)
+        private void DrawPoint(int x, int y, int size, ConsoleChar fill)
         {
             if (size == 1)
             {
