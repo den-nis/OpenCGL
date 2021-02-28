@@ -12,7 +12,8 @@ namespace Example
 
             Console.Title = "Hello world";
             Console.CursorVisible = false;
-            ConsoleSettings.ApplyDefaultSettings(width, height);
+            ConsoleSettings.ApplyDefaultSettings();
+            ConsoleSettings.SetSize(width, height);
 
             Window window = new Window(width, height);
 
