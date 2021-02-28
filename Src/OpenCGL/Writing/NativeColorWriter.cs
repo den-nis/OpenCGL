@@ -7,6 +7,9 @@ namespace OpenCGL.Writing
     {
         public void Write(ConsoleChar[] data, int width, int height)
         {
+            if (Console.CursorLeft != 0 || Console.CursorTop != 0)
+                Console.SetCursorPosition(0, 0);
+
             var BackgroundColor = Console.BackgroundColor;
             var ForegroundColor = Console.ForegroundColor;
 
