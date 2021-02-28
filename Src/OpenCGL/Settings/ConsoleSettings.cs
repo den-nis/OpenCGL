@@ -6,15 +6,17 @@ namespace OpenCGL.Settings
 {
     public static class ConsoleSettings
     {
-        public static void ApplyDefaultSettings(int width, int height)
+        public static void ApplyDefaultSettings()
         {
             SetConsoleFontFace("Terminal");
             SetConsoleFontSize(8, 8);
+            DisableResize();
+        }
 
+        public static void SetSize(int width, int height)
+		{
             Console.SetWindowSize(width, height);
             Console.SetBufferSize(width, height);
-
-            DisableResize();
         }
 
         public static void DisableResize()
