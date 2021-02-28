@@ -6,7 +6,7 @@ namespace Example
 {
     class Program
     {
-        static void Main(string[] args)
+        static void Main()
         {
             int width = 50, height = 50;
 
