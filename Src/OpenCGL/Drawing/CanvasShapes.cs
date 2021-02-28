@@ -103,37 +103,27 @@ namespace OpenCGL.Drawing
         public void FillTriangle(Vec2i point1, Vec2i point2, Vec2i point3, ConsoleChar fill) => FillTriangle(point1.X, point1.Y, point2.X, point2.Y, point3.X, point3.Y, fill);
         public void FillTriangle(int x1, int y1, int x2, int y2, int x3, int y3, ConsoleChar fill)
         {
-            var points = new (int x, int y)[] { (x1, y1), (x2, y2), (x3, y3) }.OrderBy(i => i.y).ToArray();
+            var left =   Math.Min(x1, Math.Min(x2, x3));
+            var top =    Math.Min(y1, Math.Min(y2, y3));
+            var right =  Math.Max(x1, Math.Max(x2, x3));
+            var bottom = Math.Max(y1, Math.Max(y2, y3));
 
-            var nx = (points[2].x - points[0].x) / (float)(points[2].y - points[0].y) * (points[1].y - points[0].y);
-            DrawFlatTriangle(points[0].x, points[0].y, points[0].x + nx, points[1].x, points[1].y, fill);
-            DrawFlatTriangle(points[2].x, points[2].y, points[0].x + nx, points[1].x, points[1].y, fill);
-        }
+            bool orientation = (y2 - y1) * (x3 - x2) - (y3 - y2) * (x2 - x1) < 0;
 
-        private void DrawFlatTriangle(int x1, int y1, float x2, float x3, int by, ConsoleChar fill)
-        {
-            var run = Math.Abs(by - y1);
-            var direction = Math.Sign(by - y1);
+            for (int y = top; y <= bottom; y++)
+			{
+                for (int x = left; x <= right; x++)
+				{
+                    bool inside = true;
 
-            var step1 = (x2 - x1) / run;
-            var step2 = (x3 - x1) / run;
+                    inside &= (GraphicsMath.Edge(x, y, x1, y1, x2, y2) > 0) ^ orientation;
+                    inside &= (GraphicsMath.Edge(x, y, x2, y2, x3, y3) > 0) ^ orientation;
+                    inside &= (GraphicsMath.Edge(x, y, x3, y3, x1, y1) > 0) ^ orientation;
 
-            float mx1 = x1;
-            float mx2 = x1;
-
-            for (int i = 0; i <= run; i++)
-            {
-                DrawFlatLine((int)Math.Round(mx1), (int)Math.Round(mx2), y1 + (i * direction), fill);
-                mx1 += step1;
-                mx2 += step2;
-            }
-        }
-
-        private void DrawFlatLine(int x1, int x2, int y, ConsoleChar fill)
-        {
-            var max = Math.Max(x1, x2);
-            for (int i = Math.Min(x1, x2); i <= max; i++)
-                DrawCharacter(i, y, fill);
+                    if (inside)
+                        DrawCharacter(x, y, fill);
+				}
+			}
         }
 
         public void FillCircle(Vec2i point, float radius, ConsoleChar fill) => FillCircle(point.X, point.Y, radius, fill);
