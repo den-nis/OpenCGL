@@ -34,8 +34,8 @@ namespace OpenCGL.Drawing
                     DrawCharacter(x, y, fill);
         }
 
-        public void DrawRectanlge(Vec2i point1, Vec2i point2, int strokeWidth, ConsoleChar stroke) => DrawRectanlge(point1.X, point1.Y, point2.X, point2.Y, strokeWidth, stroke);
-        public void DrawRectanlge(int x1, int y1, int x2, int y2, int strokeWidth, ConsoleChar stroke)
+        public void DrawRectangle(Vec2i point1, Vec2i point2, int strokeWidth, ConsoleChar stroke) => DrawRectangle(point1.X, point1.Y, point2.X, point2.Y, strokeWidth, stroke);
+        public void DrawRectangle(int x1, int y1, int x2, int y2, int strokeWidth, ConsoleChar stroke)
         {
             var xs = Math.Min(x1, x2);
             var ys = Math.Min(y1, y2);
