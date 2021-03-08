@@ -55,13 +55,13 @@ namespace OpenCGL.Settings
             return info;
         }
 
-        public static Vec2i GetMousePosition()
+        public static Vec2f GetMousePosition()
         {
             var info = GetCurrentConsoleFontInfo();
             var point = new POINT() { X = 0, Y = 0 };
             if (GetCursorPos(ref point) && ScreenToClient(GetConsoleWindow(), ref point))
-                return new Vec2i((int)(point.X / (float)info.dwFontSize.X), (int)(point.Y / (float)info.dwFontSize.Y));
-            return new Vec2i();
+                return new Vec2f(point.X / (float)info.dwFontSize.X, point.Y / (float)info.dwFontSize.Y);
+            return new Vec2f();
         }
     }
 }
