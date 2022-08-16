@@ -18,7 +18,11 @@ namespace OpenCGL.Writing
                     var character = data[x + y * width];
                     sb.Append(character == default ? ' ' : character.Character);
                 }
-                sb.AppendLine();
+
+                if (y < height-1)
+                {
+                    sb.AppendLine();
+                }
             }
             Console.Write(sb);
         }

@@ -15,8 +15,9 @@ namespace OpenCGL.Settings
 
         public static void SetSize(int width, int height)
 		{
-            Console.SetWindowSize(width, height);
+            Console.SetWindowSize(1, 1);
             Console.SetBufferSize(width, height);
+            Console.SetWindowSize(width, height);
         }
 
         public static void DisableResize()

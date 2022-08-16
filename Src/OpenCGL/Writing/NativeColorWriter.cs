@@ -43,8 +43,12 @@ namespace OpenCGL.Writing
 
                     buffer.Append(write == default ? ' ' : write.Character);
                 }
-                buffer.AppendLine();
-            }
+
+                if (y < height - 1)
+                {
+                    buffer.AppendLine();
+                }
+			}
 
             Console.Write(buffer);
             Console.BackgroundColor = OldBackgroundColor;
