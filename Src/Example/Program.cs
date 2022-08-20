@@ -1,28 +1,22 @@
 ﻿using OpenCGL;
-using OpenCGL.Settings;
 using System;
 
-namespace Example
+Console.Title = "Hello world";
+
+ConsoleEx.SetConsoleFontFaceName("Terminal");
+ConsoleEx.SetConsoleFontSize(8, 8);
+
+Window window = new(RendererType.NativeRenderer);
+
+while (true)
 {
-    class Program
-    {
-        static void Main()
-        {
-            int width = 50, height = 50;
+    Console.CursorVisible = false;
 
-            Console.Title = "Hello world";
-            Console.CursorVisible = false;
-            ConsoleSettings.ApplyDefaultSettings();
-            ConsoleSettings.SetSize(width, height);
+    var canvas = window.GetCanvas();
 
-            Window window = new Window(width, height);
+    canvas.Clear();
 
-            while (true)
-            {
-                window.Canvas.Clear();
-                window.Canvas.FillCircle(width/2, height/2, 10, ConsoleChar.Red);
-                window.Render();
-            }
-        }
-    }
+    canvas.FillCircle(window.Width / 2, window.Height / 2, Math.Min(window.Width, window.Height) / 2, ConsoleChar.Red);
+
+    window.Render();
 }

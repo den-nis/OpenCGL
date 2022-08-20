@@ -1,11 +1,10 @@
 ﻿using System;
-using System.Linq;
 
 namespace OpenCGL.Drawing
 {
-    public partial class Canvas
+	public partial class Canvas
     {
-        private void DrawPoint(int x, int y, int size, ConsoleChar fill)
+        private void DrawSquare(int x, int y, int size, ConsoleChar fill)
         {
             if (size == 1)
             {
@@ -44,14 +43,14 @@ namespace OpenCGL.Drawing
 
             for (int y = ys; y <= ye; ++y)
             {
-                DrawPoint(xs, y, strokeWidth, stroke);
-                DrawPoint(xe, y, strokeWidth, stroke);
+                DrawSquare(xs, y, strokeWidth, stroke);
+                DrawSquare(xe, y, strokeWidth, stroke);
             }
 
             for (int x = xs; x <= xe; ++x)
             {
-                DrawPoint(x, ys, strokeWidth, stroke);
-                DrawPoint(x, ye, strokeWidth, stroke);
+                DrawSquare(x, ys, strokeWidth, stroke);
+                DrawSquare(x, ye, strokeWidth, stroke);
             }
         }
 
@@ -71,11 +70,11 @@ namespace OpenCGL.Drawing
                 float y = y1;
                 for (int x = x1; x != x2; x += xd)
                 {
-                    DrawPoint(x, (int)Math.Round(y), strokeWidth, stroke);
+                    DrawSquare(x, (int)Math.Round(y), strokeWidth, stroke);
                     y += slope * yd;
                 }
 
-                DrawPoint(x2, (int)Math.Round(y), strokeWidth, stroke);
+                DrawSquare(x2, (int)Math.Round(y), strokeWidth, stroke);
             }
             else
             {
@@ -84,11 +83,11 @@ namespace OpenCGL.Drawing
                 float x = x1;
                 for (int y = y1; y != y2; y += yd)
                 {
-                    DrawPoint((int)Math.Round(x), y, strokeWidth, stroke);
+                    DrawSquare((int)Math.Round(x), y, strokeWidth, stroke);
                     x += slope * xd;
                 }
 
-                DrawPoint((int)Math.Round(x), y2, strokeWidth, stroke);
+                DrawSquare((int)Math.Round(x), y2, strokeWidth, stroke);
             }
         }
 
@@ -116,9 +115,9 @@ namespace OpenCGL.Drawing
 				{
                     bool inside = true;
 
-                    inside &= (GraphicsMath.Edge(x, y, x1, y1, x2, y2) > 0) ^ orientation;
-                    inside &= (GraphicsMath.Edge(x, y, x2, y2, x3, y3) > 0) ^ orientation;
-                    inside &= (GraphicsMath.Edge(x, y, x3, y3, x1, y1) > 0) ^ orientation;
+                    inside &= (Edge(x, y, x1, y1, x2, y2) > 0) ^ orientation;
+                    inside &= (Edge(x, y, x2, y2, x3, y3) > 0) ^ orientation;
+                    inside &= (Edge(x, y, x3, y3, x1, y1) > 0) ^ orientation;
 
                     if (inside)
                         DrawCharacter(x, y, fill);
@@ -157,13 +156,18 @@ namespace OpenCGL.Drawing
 
                     if (distance < radius + .5f && distance >= radius - 1)
                     {
-                        DrawPoint(x + ix, y + iy, strokeWidth, stroke);
-                        DrawPoint(x - ix, y + iy, strokeWidth, stroke);
-                        DrawPoint(x + ix, y - iy, strokeWidth, stroke);
-                        DrawPoint(x - ix, y - iy, strokeWidth, stroke);
+                        DrawSquare(x + ix, y + iy, strokeWidth, stroke);
+                        DrawSquare(x - ix, y + iy, strokeWidth, stroke);
+                        DrawSquare(x + ix, y - iy, strokeWidth, stroke);
+                        DrawSquare(x - ix, y - iy, strokeWidth, stroke);
                     }
                 }
             }
+        }
+
+        private static float Edge(float px, float py, float x1, float y1, float x2, float y2)
+        {
+            return (px - x1) * (y2 - y1) - (py - y1) * (x2 - x1);
         }
     }
 }
