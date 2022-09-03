@@ -3,9 +3,6 @@ using System;
 
 Console.Title = "Hello world";
 
-ConsoleEx.SetConsoleFontFaceName("Terminal");
-ConsoleEx.SetConsoleFontSize(8, 8);
-
 Window window = new(RendererType.NativeRenderer);
 
 while (true)
