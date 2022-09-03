@@ -1,2 +1,2 @@
 # OpenCGL
-Library for drawing graphics in Windows Command Prompt
+Library for drawing graphics in the Command Prompt
