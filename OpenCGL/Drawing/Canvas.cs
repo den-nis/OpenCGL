@@ -2,7 +2,7 @@
 
 public partial class Canvas
 {
-    internal ConsoleChar[] Buffer { get; }
+    internal Color[] Buffer { get; }
 
     public int Width { get; }
     public int Height { get; }
@@ -11,17 +11,17 @@ public partial class Canvas
     {
         Width = width;
         Height = height;
-        Buffer = new ConsoleChar[width * height];
+        Buffer = new Color[width * height];
     }
 
-    public Canvas(int width, int height, ConsoleChar[] data)
+    public Canvas(int width, int height, Color[] data)
     {
         Width = width;
         Height = height;
         Buffer = data;
     }
 
-    public ConsoleChar this[int x, int y]
+    public Color this[int x, int y]
     {
         get => Buffer[x + y * Width];
         set => Buffer[x + y * Width] = value;
@@ -35,21 +35,21 @@ public partial class Canvas
     }
 
     public void Clear() => Fill(default);
-    public void Fill(ConsoleChar character)
+    public void Fill(Color character)
     {
         for (int i = 0; i < Buffer.Length; ++i)
             Buffer[i] = character;
     }
 
-    public void DrawCharacter(Vec2i point, ConsoleChar character) => DrawCharacter(point.X, point.Y, character);
-    public void DrawCharacter(int x, int y, ConsoleChar character)
+    public void DrawCharacter(Vec2i point, Color character) => DrawCharacter(point.X, point.Y, character);
+    public void DrawCharacter(int x, int y, Color character)
     {
         if (x < 0 || y < 0 || x >= Width || y >= Height)
             return;
         Buffer[x + y * Width] = character;
     }
 
-    public void DrawCharacter(int i, ConsoleChar character)
+    public void DrawCharacter(int i, Color character)
     {
         if (i < 0 || i >= Buffer.Length)
             return;

@@ -30,14 +30,14 @@ public partial class Canvas
         int width = bw.ReadInt32();
         int height = bw.ReadInt32();
 
-        List<ConsoleChar> consoleChars = new();
+        List<Color> consoleChars = new();
 
         for (int i = 0; i < width * height; i++)
         {
             var character = bw.ReadChar();
             var attributes = bw.ReadInt16();
 
-            consoleChars.Add(new ConsoleChar(attributes, character));
+            consoleChars.Add(new Color(attributes, character));
         }
 
         var canvas = new Canvas(width, height, consoleChars.ToArray());

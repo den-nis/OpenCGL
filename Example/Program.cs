@@ -13,7 +13,7 @@ while (true)
 
     canvas.Clear();
 
-    canvas.FillCircle(window.Width / 2, window.Height / 2, Math.Min(window.Width, window.Height) / 2, ConsoleChar.Red);
+    canvas.FillCircle(window.Width / 2, window.Height / 2, Math.Min(window.Width, window.Height) / 2, Color.Red);
 
     window.Render();
 }

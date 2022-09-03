@@ -6,7 +6,7 @@ namespace OpenCGL.Renderers;
 
 internal class NativeTextRenderer : IRenderer
 {
-    public void Write(ConsoleChar[] data, int width, int height)
+    public void Write(Color[] data, int width, int height)
     {
         Console.ForegroundColor = ConsoleColor.White;
         Console.BackgroundColor = ConsoleColor.Black;

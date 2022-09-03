@@ -4,7 +4,7 @@ namespace OpenCGL.Drawing
 {
 	public partial class Canvas
     {
-        private void DrawSquare(int x, int y, int size, ConsoleChar fill)
+        private void DrawSquare(int x, int y, int size, Color fill)
         {
             if (size == 1)
             {
@@ -22,8 +22,8 @@ namespace OpenCGL.Drawing
             }
         }
 
-        public void FillRectanlge(Vec2i point1, Vec2i point2, ConsoleChar fill) => FillRectanlge(point1.X, point1.Y, point2.X, point2.Y, fill);
-        public void FillRectanlge(int x1, int y1, int x2, int y2, ConsoleChar fill)
+        public void FillRectanlge(Vec2i point1, Vec2i point2, Color fill) => FillRectanlge(point1.X, point1.Y, point2.X, point2.Y, fill);
+        public void FillRectanlge(int x1, int y1, int x2, int y2, Color fill)
         {
             var xe = Math.Max(x1, x2);
             var ye = Math.Max(y1, y2);
@@ -33,8 +33,8 @@ namespace OpenCGL.Drawing
                     DrawCharacter(x, y, fill);
         }
 
-        public void DrawRectangle(Vec2i point1, Vec2i point2, int strokeWidth, ConsoleChar stroke) => DrawRectangle(point1.X, point1.Y, point2.X, point2.Y, strokeWidth, stroke);
-        public void DrawRectangle(int x1, int y1, int x2, int y2, int strokeWidth, ConsoleChar stroke)
+        public void DrawRectangle(Vec2i point1, Vec2i point2, int strokeWidth, Color stroke) => DrawRectangle(point1.X, point1.Y, point2.X, point2.Y, strokeWidth, stroke);
+        public void DrawRectangle(int x1, int y1, int x2, int y2, int strokeWidth, Color stroke)
         {
             var xs = Math.Min(x1, x2);
             var ys = Math.Min(y1, y2);
@@ -54,8 +54,8 @@ namespace OpenCGL.Drawing
             }
         }
 
-        public void DrawLine(Vec2i point1, Vec2i point2, int strokeWidth, ConsoleChar stroke) => DrawLine(point1.X, point1.Y, point2.X, point2.Y, strokeWidth, stroke);
-        public void DrawLine(int x1, int y1, int x2, int y2, int strokeWidth, ConsoleChar stroke)
+        public void DrawLine(Vec2i point1, Vec2i point2, int strokeWidth, Color stroke) => DrawLine(point1.X, point1.Y, point2.X, point2.Y, strokeWidth, stroke);
+        public void DrawLine(int x1, int y1, int x2, int y2, int strokeWidth, Color stroke)
         {
             int dx = Math.Abs(x2 - x1); //Delta x
             int dy = Math.Abs(y2 - y1); //Delta y
@@ -91,16 +91,16 @@ namespace OpenCGL.Drawing
             }
         }
 
-        public void DrawTriangle(Vec2i point1, Vec2i point2, Vec2i point3, int strokeWidth, ConsoleChar stroke) => DrawTriangle(point1.X, point1.Y, point2.X, point2.Y, point3.X, point3.Y, strokeWidth, stroke);
-        public void DrawTriangle(int x1, int y1, int x2, int y2, int x3, int y3, int strokeWidth, ConsoleChar stroke)
+        public void DrawTriangle(Vec2i point1, Vec2i point2, Vec2i point3, int strokeWidth, Color stroke) => DrawTriangle(point1.X, point1.Y, point2.X, point2.Y, point3.X, point3.Y, strokeWidth, stroke);
+        public void DrawTriangle(int x1, int y1, int x2, int y2, int x3, int y3, int strokeWidth, Color stroke)
         {
             DrawLine(x1, y1, x2, y2, strokeWidth, stroke);
             DrawLine(x2, y2, x3, y3, strokeWidth, stroke);
             DrawLine(x3, y3, x1, y1, strokeWidth, stroke);
         }
 
-        public void FillTriangle(Vec2i point1, Vec2i point2, Vec2i point3, ConsoleChar fill) => FillTriangle(point1.X, point1.Y, point2.X, point2.Y, point3.X, point3.Y, fill);
-        public void FillTriangle(int x1, int y1, int x2, int y2, int x3, int y3, ConsoleChar fill)
+        public void FillTriangle(Vec2i point1, Vec2i point2, Vec2i point3, Color fill) => FillTriangle(point1.X, point1.Y, point2.X, point2.Y, point3.X, point3.Y, fill);
+        public void FillTriangle(int x1, int y1, int x2, int y2, int x3, int y3, Color fill)
         {
             var left =   Math.Min(x1, Math.Min(x2, x3));
             var top =    Math.Min(y1, Math.Min(y2, y3));
@@ -125,8 +125,8 @@ namespace OpenCGL.Drawing
 			}
         }
 
-        public void FillCircle(Vec2i point, float radius, ConsoleChar fill) => FillCircle(point.X, point.Y, radius, fill);
-        public void FillCircle(int x, int y, float radius, ConsoleChar fill)
+        public void FillCircle(Vec2i point, float radius, Color fill) => FillCircle(point.X, point.Y, radius, fill);
+        public void FillCircle(int x, int y, float radius, Color fill)
         {
             for (int iy = 0; iy < (int)radius + 1; iy++)
             {
@@ -145,8 +145,8 @@ namespace OpenCGL.Drawing
             }
         }
 
-        public void DrawCircle(Vec2i point, float radius, int strokeWidth, ConsoleChar stroke) => DrawCircle(point.X, point.Y, radius, strokeWidth, stroke);
-        public void DrawCircle(int x, int y, float radius, int strokeWidth, ConsoleChar stroke)
+        public void DrawCircle(Vec2i point, float radius, int strokeWidth, Color stroke) => DrawCircle(point.X, point.Y, radius, strokeWidth, stroke);
+        public void DrawCircle(int x, int y, float radius, int strokeWidth, Color stroke)
         {
             for (int iy = 0; iy < (int)radius + 1; iy++)
             {

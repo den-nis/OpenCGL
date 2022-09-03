@@ -19,7 +19,7 @@ public partial class Canvas
         }
     }
 
-    public void Composite(int x, int y, Canvas other, ConsoleChar filter)
+    public void Composite(int x, int y, Canvas other, Color filter)
     {
         var maxWidth = Math.Min(other.Width + x, Width);
         var maxHeight = Math.Min(other.Height + y, Height);
@@ -34,7 +34,7 @@ public partial class Canvas
         }
     }
 
-    public void Composite(int x, int y, Canvas other, HashSet<ConsoleChar> filters)
+    public void Composite(int x, int y, Canvas other, HashSet<Color> filters)
     {
         var maxWidth = Math.Min(other.Width + x, Width);
         var maxHeight = Math.Min(other.Height + y, Height);

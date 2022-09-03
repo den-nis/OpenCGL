@@ -2,5 +2,5 @@
 
 public interface IRenderer
 {
-    void Write(ConsoleChar[] buffer, int width, int height);
+    void Write(Color[] buffer, int width, int height);
 }

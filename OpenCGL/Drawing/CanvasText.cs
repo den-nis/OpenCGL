@@ -42,7 +42,7 @@ public partial class Canvas
                         continue;
 
                     case ' ':
-                        DrawCharacter(sx, sy, new ConsoleChar(foreColor, backColor, ' '));
+                        DrawCharacter(sx, sy, new Color(foreColor, backColor, ' '));
                         sx++;
                         continue;
 
@@ -51,7 +51,7 @@ public partial class Canvas
                 }
             }
 
-            DrawCharacter(sx, sy, new ConsoleChar(foreColor, backColor, text[i]));
+            DrawCharacter(sx, sy, new Color(foreColor, backColor, text[i]));
             sx++;
         }
     }

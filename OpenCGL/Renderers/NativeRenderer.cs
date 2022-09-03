@@ -6,7 +6,7 @@ namespace OpenCGL.Renderers;
 
 internal class NativeRenderer : IRenderer
 {
-    public void Write(ConsoleChar[] data, int width, int height)
+    public void Write(Color[] data, int width, int height)
     {
         if (width == 0 || height == 0)
             return;

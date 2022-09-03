@@ -4,7 +4,7 @@ namespace OpenCGL.Renderers;
 
 internal class WindowsRenderer : IRenderer
 {
-    public void Write(ConsoleChar[] consoleChars, int width, int height)
+    public void Write(Color[] consoleChars, int width, int height)
     {
         SMALL_RECT region = new()
 		{

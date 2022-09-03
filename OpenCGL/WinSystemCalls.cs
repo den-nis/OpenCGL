@@ -69,7 +69,7 @@ internal class WinSystemCalls
     public static extern bool SetCurrentConsoleFontEx(IntPtr hConsoleOutput, bool bMaximumWindow, ref CONSOLE_FONT_INFOEX lpConsoleCurrentFontEx);
 
     [DllImport("Kernel32.dll", CharSet = CharSet.Ansi, BestFitMapping = false)]
-    public static extern bool WriteConsoleOutput(IntPtr hConsoleOutput, ConsoleChar[] buffer, COORD bufferSize, COORD bufferCoord, ref SMALL_RECT writeRegion);
+    public static extern bool WriteConsoleOutput(IntPtr hConsoleOutput, Color[] buffer, COORD bufferSize, COORD bufferCoord, ref SMALL_RECT writeRegion);
 
     [DllImport("kernel32.dll", ExactSpelling = true)]
     public static extern IntPtr GetConsoleWindow();
