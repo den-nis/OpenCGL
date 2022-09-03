@@ -8,48 +8,48 @@ public static class ConsoleFont
 	/// <summary>
 	/// Will only work on Windows
 	/// </summary>
-	public static void WindowsSetConsoleFontFaceName(string faceName)
+	public static void WinSetConsoleFontFaceName(string faceName)
 	{
 		if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
 		{
 			var info = GetCurrentConsoleFontInfo();
 			info.FaceName = faceName;
-			if (!WindowsSystemCalls.SetCurrentConsoleFontEx(WindowsSystemCalls.ConsoleHandle, false, ref info))
+			if (!WinSystemCalls.SetCurrentConsoleFontEx(WinSystemCalls.ConsoleHandle, false, ref info))
 			{
 				throw new Exception("Failed to set console font");
 			}
 		}
 		else
 		{
-			throw NotSupportedException(nameof(WindowsSetConsoleFontFaceName));
+			throw NotSupportedException(nameof(WinSetConsoleFontFaceName));
 		}
 	}
 
 	/// <summary>
 	/// Will only work on Windows
 	/// </summary>
-	public static void WindowsSetConsoleFontSize(int x, int y)
+	public static void WinSetConsoleFontSize(int x, int y)
 	{
 		if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
 		{
 			var info = GetCurrentConsoleFontInfo();
-			info.dwFontSize = new WindowsSystemCalls.COORD((short)x, (short)y);
-			if (!WindowsSystemCalls.SetCurrentConsoleFontEx(WindowsSystemCalls.ConsoleHandle, false, ref info))
+			info.dwFontSize = new WinSystemCalls.COORD((short)x, (short)y);
+			if (!WinSystemCalls.SetCurrentConsoleFontEx(WinSystemCalls.ConsoleHandle, false, ref info))
 			{
 				throw new Exception("Failed to set console font size");
 			}
 		}
 		else
 		{
-			throw NotSupportedException(nameof(WindowsSetConsoleFontSize));
+			throw NotSupportedException(nameof(WinSetConsoleFontSize));
 		}
 	}
 
-	private static WindowsSystemCalls.CONSOLE_FONT_INFOEX GetCurrentConsoleFontInfo()
+	private static WinSystemCalls.CONSOLE_FONT_INFOEX GetCurrentConsoleFontInfo()
 	{
-		WindowsSystemCalls.CONSOLE_FONT_INFOEX info = new();
+		WinSystemCalls.CONSOLE_FONT_INFOEX info = new();
 		info.cbSize = (uint)Marshal.SizeOf(info);
-		if (!WindowsSystemCalls.GetCurrentConsoleFontEx(WindowsSystemCalls.ConsoleHandle, false, ref info))
+		if (!WinSystemCalls.GetCurrentConsoleFontEx(WinSystemCalls.ConsoleHandle, false, ref info))
 		{
 			throw new Exception("Failed to get current console font info");
 		}

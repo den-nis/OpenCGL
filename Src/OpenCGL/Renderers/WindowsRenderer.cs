@@ -1,4 +1,4 @@
-﻿using static OpenCGL.WindowsSystemCalls;
+﻿using static OpenCGL.WinSystemCalls;
 
 namespace OpenCGL.Renderers;
 

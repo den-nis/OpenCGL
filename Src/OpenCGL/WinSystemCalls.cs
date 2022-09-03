@@ -3,8 +3,8 @@ using System.Runtime.InteropServices;
 
 namespace OpenCGL;
 
-internal class WindowsSystemCalls
-{ 
+internal class WinSystemCalls
+{
     public const int MF_BYCOMMAND = 0x00000000;
     public const int SC_MINIMIZE = 0xF020;
     public const int SC_MAXIMIZE = 0xF030;
