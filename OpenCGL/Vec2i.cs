@@ -17,4 +17,9 @@ public struct Vec2i
     }
 
     public Vec2f ToVec2f() => new(X, Y);
+
+    public override string ToString()
+    {
+        return $"({X},{Y})";
+    }
 }
