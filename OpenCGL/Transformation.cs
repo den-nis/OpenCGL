@@ -4,7 +4,7 @@ namespace OpenCGL;
 
 public class Transformation
 {
-    float[,] matrix = new float[,]
+    private float[,] matrix = new float[,]
     {
         {1,0,0},
         {0,1,0},
