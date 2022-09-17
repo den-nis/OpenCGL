@@ -55,4 +55,10 @@ public partial class Canvas
             return;
         Buffer[i] = character;
     }
+
+    public Color GetColor(Vec2i point) => GetColor(point.X, point.Y);
+    public Color GetColor(int x, int y)
+    {
+        return Buffer[x + y * Width];
+    }
 }

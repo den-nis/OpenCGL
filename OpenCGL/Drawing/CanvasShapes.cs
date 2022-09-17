@@ -99,30 +99,35 @@ namespace OpenCGL.Drawing
             DrawLine(x3, y3, x1, y1, strokeWidth, stroke);
         }
 
-        public void FillTriangle(Vec2i point1, Vec2i point2, Vec2i point3, Color fill) => FillTriangle(point1.X, point1.Y, point2.X, point2.Y, point3.X, point3.Y, fill);
-        public void FillTriangle(int x1, int y1, int x2, int y2, int x3, int y3, Color fill)
+        public void FillTriangle(Vec2f point1, Vec2f point2, Vec2f point3, Color fill) => FillTriangle(point1.X, point1.Y, point2.X, point2.Y, point3.X, point3.Y, fill);
+        public void FillTriangle(float x1, float y1, float x2, float y2, float x3, float y3, Color fill)
         {
-            var left =   Math.Min(x1, Math.Min(x2, x3));
-            var top =    Math.Min(y1, Math.Min(y2, y3));
-            var right =  Math.Max(x1, Math.Max(x2, x3));
-            var bottom = Math.Max(y1, Math.Max(y2, y3));
+            var left =   Math.Min((int)x1, Math.Min((int)x2, (int)x3)) - 1;
+            var top =    Math.Min((int)y1, Math.Min((int)y2, (int)y3)) - 1;
+            var right =  Math.Max((int)x1, Math.Max((int)x2, (int)x3)) + 1;
+            var bottom = Math.Max((int)y1, Math.Max((int)y2, (int)y3)) + 1;
 
-            bool orientation = (y2 - y1) * (x3 - x2) - (y3 - y2) * (x2 - x1) < 0;
+            for (int y = top; y < bottom; ++y) 
+            {
+                for (int x = left; x < right; ++x) 
+                {
+                    float w0 = Edge(x + .5f, y + .5f, x3, y3, x2, y2); 
+                    float w1 = Edge(x + .5f, y + .5f, x1, y1, x3, y3); 
+                    float w2 = Edge(x + .5f, y + .5f, x2, y2, x1, y1); 
 
-            for (int y = top; y <= bottom; y++)
-			{
-                for (int x = left; x <= right; x++)
-				{
-                    bool inside = true;
-
-                    inside &= (Edge(x, y, x1, y1, x2, y2) > 0) ^ orientation;
-                    inside &= (Edge(x, y, x2, y2, x3, y3) > 0) ^ orientation;
-                    inside &= (Edge(x, y, x3, y3, x1, y1) > 0) ^ orientation;
-
-                    if (inside)
-                        DrawCharacter(x, y, fill);
-				}
-			}
+                    if (w0 >= 0 && w1 >= 0 && w2 >= 0) 
+                    {
+                        if (
+                         (w0 != 0 || (y3 < y2 || (y3 == y2 && x3 < x2))) &&
+                         (w1 != 0 || (y1 < y3 || (y1 == y3 && x1 < x3))) &&
+                         (w2 != 0 || (y2 < y1 || (y2 == y1 && x2 < x1)))
+                        )
+                        {
+                            DrawCharacter(x, y, fill);
+                        }
+                    }
+                }
+            }
         }
 
         public void FillCircle(Vec2i point, float radius, Color fill) => FillCircle(point.X, point.Y, radius, fill);
