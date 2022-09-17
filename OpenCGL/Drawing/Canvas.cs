@@ -7,6 +7,8 @@ public partial class Canvas
     public int Width { get; }
     public int Height { get; }
 
+    public Transformation Context { get; set; } = new();
+
     public Canvas(int width, int height)
     {
         Width = width;

@@ -11,6 +11,13 @@ public class Transformation
         {0,0,1}
     };
 
+    public void Reset() => matrix = new float[,]
+    {
+        {1,0,0},
+        {0,1,0},
+        {0,0,1}
+    };
+
     public void Rotate(float radians)
     {
         var c = (float)Math.Cos(radians);

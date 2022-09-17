@@ -1,6 +1,7 @@
 ﻿using OpenCGL.Drawing;
 using OpenCGL.Renderers;
 using System;
+using System.Runtime.InteropServices;
 
 namespace OpenCGL;
 
@@ -11,36 +12,45 @@ public class Window
     public int MaxWidth { get; set; } = int.MaxValue;
     public int MaxHeight { get; set; } = int.MaxValue;
 
-    public int Width { get; private set; }
-    public int Height { get; private set; }
+    public int Width { get; private set; } = -1;
+    public int Height { get; private set; } = -1;
     public bool ResizeToWindow { get; set; }
 
-    private Canvas canvas;
+    public Canvas Canvas { get; set; }
     private IRenderer Renderer { get; }
 
-    public Window(RendererType type = RendererType.WindowsRenderer) : this(RendererFactory.GetRenderer(type)) 
+    public Window(RendererType type) : this(RendererFactory.GetRenderer(type)) 
+    {
+    }
+
+    public Window() : this(GetOptimalRenderer())
     {
     }
 
     public Window(IRenderer renderer)
     {
         Renderer = renderer;
-        UpdateWidthAndHeight();
+        UpdateSize();
     }
 
-    public Canvas GetCanvas()
+    public void UpdateSize()
     {
         int oldWidth = Width, oldHeight = Height;
         UpdateWidthAndHeight();
 
-        if (oldWidth != Width || oldHeight != Height || canvas == null)
+        if (oldWidth != Width || oldHeight != Height || Canvas == null)
         {
-            canvas = new Canvas(Width, Height);
+            var context = Canvas?.Context;
+            Canvas = new Canvas(Width, Height);
+            Canvas.Context ??= context;
             OnWindowResized?.Invoke();
         }
-
-        return canvas;
 	}
+
+    public void Render()
+    {
+        Renderer.Write(Canvas.Buffer, Canvas.Width, Canvas.Height);
+    }
 
     private void UpdateWidthAndHeight()
     {
@@ -48,8 +58,13 @@ public class Window
         Height = Math.Max(0, Math.Min(MaxHeight, Console.WindowHeight));
     }
 
-    public void Render()
+    private static RendererType GetOptimalRenderer()
     {
-        Renderer.Write(canvas.Buffer, canvas.Width, canvas.Height);
+        if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows)) 
+        {
+            return RendererType.NativeRenderer;
+        }
+
+        return RendererType.NativeRenderer;
     }
 }
