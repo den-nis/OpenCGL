@@ -15,7 +15,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="../OpenCGL/OpenCGL.csproj" />
+    <ProjectReference Include="..\OpenCGL\OpenCGL.csproj" />
   </ItemGroup>
 
 </Project>
