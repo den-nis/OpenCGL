@@ -15,8 +15,9 @@ public partial class Canvas
     public void DrawText(Vec2i p, string text, ConsoleColor foreColor, ConsoleColor backColor) => DrawText(p.X, p.Y, text, foreColor, backColor);
     public void DrawText(int x, int y, string text, ConsoleColor foreColor, ConsoleColor backColor)
     {
-        int sx = x;
-        int sy = y;
+        var position = Context.Apply(x,y);
+        int sx = (int)(position.X + .5f);
+        int sy = (int)(position.Y + .5f);
 
         int MaxWidth = 0;
         int MaxHeight = 0;
