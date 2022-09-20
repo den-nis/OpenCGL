@@ -54,45 +54,24 @@ namespace OpenCGL.Drawing
             }
         }
 
-        public void DrawLine(Vec2i point1, Vec2i point2, int strokeWidth, Color stroke) => DrawLine(point1.X, point1.Y, point2.X, point2.Y, strokeWidth, stroke);
-        public void DrawLine(int x1, int y1, int x2, int y2, int strokeWidth, Color stroke)
+        public void DrawLine(float x1, float y1, float x2, float y2, float strokeWidth, Color fill) => DrawLine(new Vec2f(x1,y1), new Vec2f(x2, y2), strokeWidth, fill);
+        public void DrawLine(Vec2f p1, Vec2f p2, float strokeWidth, Color fill)
         {
-            int dx = Math.Abs(x2 - x1); //Delta x
-            int dy = Math.Abs(y2 - y1); //Delta y
+            float dx = (p2.X - p1.X); //Delta x
+            float dy = (p2.Y - p1.Y); //Delta y
 
-            var xd = Math.Sign(x2 - x1); //X direction
-            var yd = Math.Sign(y2 - y1); //Y direction
+            float angle = (float)Math.Atan2(dx, dy);
+            float d90 = (float)Math.PI / 2;
 
-            if (dx > dy)
-            {
-                var slope = dy / (float)dx;
-
-                float y = y1;
-                for (int x = x1; x != x2; x += xd)
-                {
-                    DrawSquare(x, (int)Math.Round(y), strokeWidth, stroke);
-                    y += slope * yd;
-                }
-
-                DrawSquare(x2, (int)Math.Round(y), strokeWidth, stroke);
-            }
-            else
-            {
-                var slope = dx / (float)dy;
-
-                float x = x1;
-                for (int y = y1; y != y2; y += yd)
-                {
-                    DrawSquare((int)Math.Round(x), y, strokeWidth, stroke);
-                    x += slope * xd;
-                }
-
-                DrawSquare((int)Math.Round(x), y2, strokeWidth, stroke);
-            }
+            Vec2f r = new Vec2f((float)Math.Sin(angle + d90) * strokeWidth, (float)Math.Cos(angle + d90) * strokeWidth); 
+            Vec2f l = new Vec2f((float)Math.Sin(angle - d90) * strokeWidth, (float)Math.Cos(angle - d90) * strokeWidth); 
+            
+            FillTriangle(p1 + r, p2 + l, p1 + l, fill);
+            FillTriangle(p2 + r, p2 + l, p1 + r, fill);
         }
 
-        public void DrawTriangle(Vec2i point1, Vec2i point2, Vec2i point3, int strokeWidth, Color stroke) => DrawTriangle(point1.X, point1.Y, point2.X, point2.Y, point3.X, point3.Y, strokeWidth, stroke);
-        public void DrawTriangle(int x1, int y1, int x2, int y2, int x3, int y3, int strokeWidth, Color stroke)
+        public void DrawTriangle(Vec2f p1, Vec2f p2, Vec2f p3, int strokeWidth, Color stroke) => DrawTriangle(p1.X, p1.Y, p2.X, p2.Y, p3.X, p3.Y, strokeWidth, stroke);
+        public void DrawTriangle(float x1, float y1, float x2, float y2, float x3, float y3, float strokeWidth, Color stroke)
         {
             DrawLine(x1, y1, x2, y2, strokeWidth, stroke);
             DrawLine(x2, y2, x3, y3, strokeWidth, stroke);
