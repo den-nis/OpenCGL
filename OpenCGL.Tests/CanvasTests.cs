@@ -8,6 +8,23 @@ namespace OpenCGL.Tests;
 [TestClass]
 public class CanvasTests
 {
+    [TestMethod]
+    public void TestTriangleWinding()
+    {
+        Vec2f left = new(-5,5);
+        Vec2f right = new(5,5);
+        Vec2f top = new(0,-5);
+
+        Canvas canvas = new Canvas(20,20);
+
+        canvas.FillTriangle(left,right,top, Color.Blue);
+        Assert.IsTrue(CountColor(canvas, Color.Blue) > 0);
+
+        canvas.FillTriangle(right,left,top, Color.Green);
+        Assert.IsTrue(CountColor(canvas, Color.Green) > 0);
+    }
+
+    [TestMethod]
     public void TestTriangleOverlap()
     {
         Vec2f[] main = new Vec2f[] {

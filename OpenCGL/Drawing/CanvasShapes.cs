@@ -85,6 +85,14 @@ namespace OpenCGL.Drawing
             p2 = Context.Apply(p2);
             p3 = Context.Apply(p3);
 
+            //Fix triangle winding 
+            Vec2f l = p2 - p1, r = p3 - p1;
+            if (l.X * r.Y - l.Y * r.X < 0) 
+            { 
+                var t = p1; p1 = p2; p2 = t; 
+            }
+
+            //Select drawing area
             var left =   Math.Min((int)p1.X, Math.Min((int)p2.X, (int)p3.X)) - 1;
             var top =    Math.Min((int)p1.Y, Math.Min((int)p2.Y, (int)p3.Y)) - 1;
             var right =  Math.Max((int)p1.X, Math.Max((int)p2.X, (int)p3.X)) + 1;
@@ -100,6 +108,7 @@ namespace OpenCGL.Drawing
 
                     if (w0 >= 0 && w1 >= 0 && w2 >= 0) 
                     {
+                        //Make sure edges don't overlap
                         if (
                          (w0 != 0 || (p3.Y < p2.Y || (p3.Y == p2.Y && p3.X < p2.X))) &&
                          (w1 != 0 || (p1.Y < p3.Y || (p1.Y == p3.Y && p1.X < p3.X))) &&
