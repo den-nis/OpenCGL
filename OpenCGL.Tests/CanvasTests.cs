@@ -17,10 +17,10 @@ public class CanvasTests
 
         Canvas canvas = new Canvas(20,20);
 
-        canvas.FillTriangle(left,right,top, Color.Blue);
+        canvas.DrawTriangle(left,right,top, Color.Blue);
         Assert.IsTrue(CountColor(canvas, Color.Blue) > 0);
 
-        canvas.FillTriangle(right,left,top, Color.Green);
+        canvas.DrawTriangle(right,left,top, Color.Green);
         Assert.IsTrue(CountColor(canvas, Color.Green) > 0);
     }
 
@@ -41,14 +41,14 @@ public class CanvasTests
 
         Canvas canvas = new Canvas(30,30);
 
-        for (int i = 0; i < tests.GetLength(0); i++) { canvas.FillTriangle(tests[i,0], tests[i,1], tests[i,2], Color.Green); }
+        for (int i = 0; i < tests.GetLength(0); i++) { canvas.DrawTriangle(tests[i,0], tests[i,1], tests[i,2], Color.Green); }
         var expectedGreen = CountColor(canvas, Color.Green);
         canvas.Clear();
 
-        canvas.FillTriangle(main[0], main[1], main[2], Color.Blue);
+        canvas.DrawTriangle(main[0], main[1], main[2], Color.Blue);
         var expectedBlue = CountColor(canvas, Color.Blue);
 
-        for (int i = 0; i < tests.GetLength(0); i++) { canvas.FillTriangle(tests[i,0], tests[i,1], tests[i,2], Color.Green); }
+        for (int i = 0; i < tests.GetLength(0); i++) { canvas.DrawTriangle(tests[i,0], tests[i,1], tests[i,2], Color.Green); }
 
         Assert.IsTrue(expectedBlue > 10);
         Assert.IsTrue(expectedGreen > 10);
