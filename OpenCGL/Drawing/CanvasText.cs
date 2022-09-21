@@ -6,14 +6,14 @@ public partial class Canvas
 { 
     private const int SpacesInTab = 4;
 
-    public void DrawText(Vec2i p, string text) => DrawText(p.X, p.Y, text);
-    public void DrawText(int x, int y, string text) => DrawText(x, y, text, ConsoleColor.White);
+    public void DrawText(Vec2f p, string text) => DrawText(p.X, p.Y, text);
+    public void DrawText(float x, float y, string text) => DrawText(x, y, text, ConsoleColor.White);
 
-    public void DrawText(Vec2i p, string text, ConsoleColor foreColor) => DrawText(p.X, p.Y, text, foreColor);
-    public void DrawText(int x, int y, string text, ConsoleColor foreColor) => DrawText(x, y, text, foreColor, ConsoleColor.Black);
+    public void DrawText(Vec2f p, string text, ConsoleColor foreColor) => DrawText(p.X, p.Y, text, foreColor);
+    public void DrawText(float x, float y, string text, ConsoleColor foreColor) => DrawText(x, y, text, foreColor, ConsoleColor.Black);
 
-    public void DrawText(Vec2i p, string text, ConsoleColor foreColor, ConsoleColor backColor) => DrawText(p.X, p.Y, text, foreColor, backColor);
-    public void DrawText(int x, int y, string text, ConsoleColor foreColor, ConsoleColor backColor)
+    public void DrawText(Vec2f p, string text, ConsoleColor foreColor, ConsoleColor backColor) => DrawText(p.X, p.Y, text, foreColor, backColor);
+    public void DrawText(float x, float y, string text, ConsoleColor foreColor, ConsoleColor backColor)
     {
         var position = Context.Apply(x,y);
         int sx = (int)(position.X + .5f);
@@ -32,7 +32,7 @@ public partial class Canvas
                 switch (text[i])
                 {
                     case '\n':
-                        sx = x;
+                        sx = (int)(position.X + .5f);
                         sy++;
                         continue;
 
