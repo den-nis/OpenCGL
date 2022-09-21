@@ -18,6 +18,14 @@ public class Transformation
         {0,0,1}
     };
 
+    public Transformation Clone() 
+    {
+        return new Transformation
+        {
+            matrix = matrix
+        };
+    }
+
     public void Rotate(float radians)
     {
         var c = (float)Math.Cos(radians);
