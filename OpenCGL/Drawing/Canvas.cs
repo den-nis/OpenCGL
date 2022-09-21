@@ -1,8 +1,13 @@
-﻿namespace OpenCGL.Drawing;
+﻿using System.Collections.Generic;
+
+namespace OpenCGL.Drawing;
 
 public partial class Canvas
 {
+    internal Stack<Transformation> TransformationStack { get; set; } = new();
     internal Color[] Buffer { get; }
+
+    public Vec2i Size => new Vec2i(Width, Height);
 
     public int Width { get; }
     public int Height { get; }
@@ -23,6 +28,14 @@ public partial class Canvas
         Buffer = data;
     }
 
+    public void PushContext() 
+    {
+        TransformationStack.Push(Context);
+        Context = Context.Clone();
+    }
+
+    public void PopContext() => Context = TransformationStack.Pop();
+    
     public Color this[int x, int y]
     {
         get => Buffer[x + y * Width];
