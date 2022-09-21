@@ -9,6 +9,6 @@ public class CanvasPerformance
     [Benchmark]
     public void FillTrianglePerformance()
     {
-        Window.FillTriangle(52,2,90,85,4,83, Color.Red);
+        Window.DrawTriangle(52,2,90,85,4,83, Color.Red);
     }
 }
