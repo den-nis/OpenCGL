@@ -16,6 +16,11 @@ public struct Vec2i
         return new Vec2f(p.X * magnitude, p.Y * magnitude);
     }
 
+    public static Vec2f operator/(Vec2i p, float magnitude)
+    {
+        return new Vec2f(p.X / magnitude, p.Y / magnitude);
+    }
+
     public Vec2f ToVec2f() => new(X, Y);
 
     public override string ToString()
