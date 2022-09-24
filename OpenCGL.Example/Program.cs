@@ -3,24 +3,29 @@ using System;
 using System.Diagnostics;
 
 Console.Title = "Hello world";
+Console.CursorVisible = false;
 
 Window window = new();
 Stopwatch deltaTimer = new();
 
+float angle = 0;
+
 while (true)
 {
-    Console.CursorVisible = false;
-
     float delta = (float)deltaTimer.Elapsed.TotalSeconds;
     deltaTimer.Restart();
 
+    angle += delta;
+
     window.Canvas.Clear();
-    window.Canvas.DrawText(1, 1, $"FPS : {1/delta}");
-
     window.Canvas.Context.Reset();
-    window.Canvas.Context.Translate(window.Width/2, window.Height/2);
-    window.Canvas.FillTriangle(0, -5, 10, 5, -10, 5, Color.Green);
-
     window.UpdateSize();
+
+    window.Canvas.Context.Rotate(angle);
+    window.Canvas.Context.Translate(window.Canvas.Size / 2);
+    window.Canvas.DrawRectanlge(-7, -7, 7, 7, Color.Red);
+    
+    var center = window.Canvas.Size / 2;
+
     window.Render();
 }
