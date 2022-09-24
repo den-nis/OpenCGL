@@ -14,7 +14,8 @@ public class Window
 
     public int Width { get; private set; } = -1;
     public int Height { get; private set; } = -1;
-    public bool ResizeToWindow { get; set; }
+    public bool ResetContextOnRender { get; set; } = true;
+
 
     public Canvas Canvas { get; set; }
     private IRenderer Renderer { get; }
@@ -50,6 +51,11 @@ public class Window
     public void Render()
     {
         Renderer.Write(Canvas.Buffer, Canvas.Width, Canvas.Height);
+
+        if (ResetContextOnRender)
+        {
+            Canvas.Context.Reset();
+        }
     }
 
     private void UpdateWidthAndHeight()

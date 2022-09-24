@@ -18,7 +18,6 @@ while (true)
     angle += delta;
 
     window.Canvas.Clear();
-    window.Canvas.Context.Reset();
     window.UpdateSize();
 
     window.Canvas.Context.Rotate(angle);
